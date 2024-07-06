@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted Response</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./status.css">
+    <link rel="stylesheet" href="./styless.css">
+</head>
+<body class="body1">
+    <div class="container mt-5">
+        <h2 class="mb-4"><center>Submitted Response</center></h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Reg No</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Purpose</th>
+                    <th>Place of Visit</th>
+                    <th>Status</th>
+                    <th>Submission Date</th>
+                    <th>Verify Proof</th>
+                </tr>
+            </thead>
+            <tbody id="requestTableBody">
+                <?php
+                // Connect to the database
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $database = "mini";
+                
+                $conn = new mysqli($servername, $username, $password, $database);
+                
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+
+                // Fetch data from the database
+                $sql = "SELECT * FROM userdata";
+                $result = $conn->query($sql);
+
+                // Display data in the table
+                if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<tr>
+                                <td>".$row['name']."</td>
+                                <td>".$row['regNo']."</td>
+                                <td>".$row['startDate']."</td>
+                                <td>".$row['endDate']."</td>
+                                <td>".$row['purpose']."</td>
+                                <td>".$row['place']."</td>
+                                <td>".$row['status']."</td>
+                                <td>".$row['submissionDate']."</td>
+                            </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='9'>No data found</td></tr>";
+                }
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Function to verify proof
+        function verifyProof(regNo, button) {
+            var fileInput = document.createElement('input');
+            fileInput.setAttribute('type', 'file');
+            fileInput.setAttribute('accept', 'image/*');
+            fileInput.addEventListener('change', function() {
+                var file = fileInput.files[0];
+                if (file) {
+                    // Here you can add the logic to handle the proof verification
+                    alert("Proof verification initiated for Registration Number: " + regNo + " with image: " + file.name);
+                    button.textContent = 'Verified';
+                    button.disabled = true;
+                } else {
+                    alert("No image selected for proof verification.");
+                }
+            });
+            fileInput.click();
+        }
+    </script>
+</body>
+</html>

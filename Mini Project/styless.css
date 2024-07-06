@@ -1,0 +1,68 @@
+/* Add your styles here */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 2px solid black;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+/* Add your styles here */
+
+  
+  .search-box {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .search-box form {
+    display: inline-block;
+  }
+  
+  .search-box input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: blacks;
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .search-box button {
+    padding: 10px;
+    font-size: 17px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+  
+  .search-box button:hover {
+    background-color: #948181;
+  }
+  .approve-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.reject-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.view-btn {
+    background-color: blue;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
